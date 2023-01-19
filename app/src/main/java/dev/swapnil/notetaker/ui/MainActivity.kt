@@ -1,8 +1,8 @@
-package dev.swapnil.notetaker
+package dev.swapnil.notetaker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.TransitionManager
+import dev.swapnil.notetaker.R
 
 
 class MainActivity : AppCompatActivity() {
