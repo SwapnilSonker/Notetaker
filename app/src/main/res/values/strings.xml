@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Notetaker</string>
+    <string name="AsktoDelete">Are you sure you want to delete?\n This note.</string>
 </resources>
