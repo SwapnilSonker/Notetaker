@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.swapnil.notetaker.R
 import dev.swapnil.notetaker.databinding.FragmentHomeBinding
+import dev.swapnil.notetaker.ui.adapters.NotesAdapter
 import dev.swapnil.notetaker.ui.viewmodels.NotesViewmodel
 import kotlinx.coroutines.launch
 
@@ -33,7 +34,7 @@ class HomeFragment : Fragment() {
         viewmodel.viewModelScope.launch {
             viewmodel.getNotes().observe(viewLifecycleOwner) { notesList ->
                 binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-                binding.recyclerView.adapter
+                binding.recyclerView.adapter = NotesAdapter(requireContext(), notesList)
             }
         }
         binding.addBtn.setOnClickListener {
