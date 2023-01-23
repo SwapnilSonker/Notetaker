@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation
 import dev.swapnil.notetaker.R
 import dev.swapnil.notetaker.databinding.FragmentCreateNewBinding
 import dev.swapnil.notetaker.ui.db.Notes
@@ -93,5 +94,6 @@ class CreateNewFragment : Fragment() {
         }
         Toast.makeText(requireContext(),"note created successfully",Toast.LENGTH_SHORT).show()
 
+        Navigation.findNavController(it!!).navigate(R.id.action_createNewFragment_to_homeFragment)
     }
 }
