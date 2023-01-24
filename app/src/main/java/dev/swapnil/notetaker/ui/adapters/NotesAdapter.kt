@@ -4,7 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mynotes.ui.Fragments.HomeFragmentDirections
 import dev.swapnil.notetaker.R
 import dev.swapnil.notetaker.databinding.FragmentHomeBinding
 import dev.swapnil.notetaker.databinding.ItemListBinding
@@ -40,7 +42,13 @@ class NotesAdapter(requiesContext: Context,val notesList: List<Notes>) : Recycle
                 holder.binding.viewPriority.setBackgroundResource(R.drawable.red_dot)
             }
         }
+        holder.binding.root.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToEditFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
+
+
 
     override fun getItemCount() : Int = notesList.size
 }
