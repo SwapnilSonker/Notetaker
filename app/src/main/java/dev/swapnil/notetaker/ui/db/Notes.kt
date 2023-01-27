@@ -1,8 +1,13 @@
 package dev.swapnil.notetaker.ui.db
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.versionedparcelable.ParcelField
+import androidx.versionedparcelable.VersionedParcelize
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "Notes")
 data class Notes(
 
@@ -14,4 +19,4 @@ data class Notes(
     var date:String,
     var priority:String
 
-)
+):Parcelable

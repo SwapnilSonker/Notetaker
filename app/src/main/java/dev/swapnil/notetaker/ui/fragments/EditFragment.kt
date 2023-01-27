@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.example.mynotes.ui.Fragments.EditFragmentArgs
 import dev.swapnil.notetaker.R
 import dev.swapnil.notetaker.databinding.FragmentCreateNewBinding
 import dev.swapnil.notetaker.databinding.FragmentEditBinding
@@ -20,7 +21,10 @@ import java.util.*
 
 
 class EditFragment : Fragment() {
+
+    val notes1 by navArgs<EditFragmentArgs>()
     lateinit var binding: FragmentEditBinding
+
     var priority: String = "1"
 
 
@@ -34,8 +38,34 @@ class EditFragment : Fragment() {
 
         binding = FragmentEditBinding.inflate(layoutInflater , container , false)
 
-        binding.EditTitle.text =
+        binding.EditTitle.setText(notes1.data.title)
+        binding.EditSubtitle.setText(notes1.data.subtitle)
+        binding.EditNotes.setText(notes1.data.notes)
 
+        when(notes1.data.priority){
+            "1"->{
+                priority = "1"
+                binding.greenDotEdit.setImageResource(R.drawable.ic_baseline_done_24)
+                binding.pinkDotEdit.setImageResource(0)
+                binding.redDotEdit.setImageResource(0)
+            }
+            "2"->{
+                priority = "2"
+                binding.pinkDotEdit.setImageResource(R.drawable.ic_baseline_done_24)
+                binding.greenDotEdit.setImageResource(0)
+                binding.redDotEdit.setImageResource(0)
+            }
+            "3"->{
+                priority = "1"
+                binding.redDotEdit.setImageResource(R.drawable.ic_baseline_done_24)
+                binding.pinkDotEdit.setImageResource(0)
+                binding.greenDotEdit.setImageResource(0)
+            }
+        }
+
+        binding.doneBtnEdit.setOnClickListener {
+            updateNotes(it)
+        }
 
         return binding.root
     }
@@ -54,7 +84,7 @@ class EditFragment : Fragment() {
 
         //when notes are updated they are immediately added to the database
         val data = Notes(
-            null,
+            notes1.data.id,
             title = title.toString(),
             subtitle = subtitle.toString(),
             notes = notes.toString(),

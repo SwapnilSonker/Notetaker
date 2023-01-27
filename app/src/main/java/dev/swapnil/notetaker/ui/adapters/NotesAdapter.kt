@@ -43,7 +43,7 @@ class NotesAdapter(requiesContext: Context,val notesList: List<Notes>) : Recycle
             }
         }
         holder.binding.root.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToEditFragment()
+            val action = HomeFragmentDirections.actionHomeFragmentToEditFragment(data)
             Navigation.findNavController(it).navigate(action)
         }
     }
